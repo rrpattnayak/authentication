@@ -25,9 +25,15 @@ public class SecurityConfig {
             .csrf().disable()
             .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll() // Allow registration and login without authentication
+                //.antMatchers("/home").permitAll()
                 .antMatchers("/getMessage").hasRole("USER") // Require USER role for /getMessage
                 .antMatchers("/admin/**").hasRole("ADMIN") // Require ADMIN role for /admin/**
+                .antMatchers("/balance").permitAll()
+                .antMatchers("/interest").hasRole("ADMIN")
+                .antMatchers("/index/**").permitAll()
                 .anyRequest().authenticated() // All other requests require authentication
+                .and()
+                .formLogin().loginPage("/login").permitAll()
                 .and()
             .httpBasic(); // Use HTTP Basic Authentication
         return http.build();

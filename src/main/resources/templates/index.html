@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Example</title>
+</head>
+<body>
+    <h1>Welcome to the Banking Application</h1>
+
+    <button onclick="window.location.href='/balance'">Show Account Balance</button>
+
+    <div th:if="${isAdmin}">
+        <button onclick="window.location.href='/interest'">Show Interest Rate</button>
+    </div>
+
+</body>
+</html>
